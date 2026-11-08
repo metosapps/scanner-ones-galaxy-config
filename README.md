@@ -1,6 +1,6 @@
 # Galaxy ad controls: com.scanner.ones
 
-Release 1.2.1 (13). On November 8, 2026 the owner confirmed this exact update is live and explicitly authorized real ads. Revision 2 enables App Open, Banner, Interstitial, Native and Rewarded using the existing app-specific production units. Rewarded Interstitial remains OFF because no unit ID was supplied. IAP is unchanged and compiled off. Actual consent eligibility and ad delivery are separate from publishing this configuration.
+Release 1.2.1 (13). On November 8, 2026 the owner confirmed this exact update is live and explicitly authorized real ads. Revision 2 enabled App Open, Banner, Interstitial, Native and Rewarded. Revision 3 adds the supplied Rewarded Interstitial unit `ca-app-pub-8235247040566090/6644732065` and enables that format too. All six formats are enabled with app-specific production units. IAP is unchanged and compiled off. Actual consent eligibility and ad delivery are separate from publishing this configuration.
 
 ## Configuration
 
@@ -26,7 +26,7 @@ Release 1.2.1 (13). On November 8, 2026 the owner confirmed this exact update is
 | `open_ad_min_background_seconds` | `30` | 30-600 seconds away before app-open eligibility |
 | `reward_hours` | `24` | 1-168 hours of ad-free access after optional rewarded completion |
 
-Each format also has its own switch: `open_ad_enabled`, `banner_enabled`, `interstitial_enabled`, `native_enabled`, `rewarded_enabled`, `rewarded_interstitial_enabled`. The first five are true in revision 2; rewarded-interstitial stays false with an empty unit ID. `admob_app_id` is documentation only: changing the manifest App ID requires a new signed APK.
+Each format also has its own switch: `open_ad_enabled`, `banner_enabled`, `interstitial_enabled`, `native_enabled`, `rewarded_enabled`, `rewarded_interstitial_enabled`. All six are true in revision 3. Rewarded Interstitial remains an explicit user-requested access offer, used when ordinary Rewarded is not ready; it is not an automatic scan/navigation placement. `admob_app_id` is documentation only: changing the manifest App ID requires a new signed APK.
 
 ## Active configuration behavior
 
