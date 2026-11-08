@@ -1,7 +1,6 @@
 # Galaxy ad controls: com.scanner.ones
 
-Release 1.2.1 (13). All advertising is OFF, including test ads. IAP is compiled off.
-Do not activate production until this exact app/update is confirmed live and the owner explicitly approves activation. Store listing, approval and local APK checks are separate gates.
+Release 1.2.1 (13). On November 8, 2026 the owner confirmed this exact update is live and explicitly authorized real ads. Revision 2 enables App Open, Banner, Interstitial, Native and Rewarded using the existing app-specific production units. Rewarded Interstitial remains OFF because no unit ID was supplied. IAP is unchanged and compiled off. Actual consent eligibility and ad delivery are separate from publishing this configuration.
 
 ## Configuration
 
@@ -16,9 +15,9 @@ Do not activate production until this exact app/update is confirmed live and the
 
 | Key | Prepared value | Bounds / meaning |
 | --- | --- | --- |
-| `ad_mode` | `off` | `off`, `test`, `production` |
-| `ads_enabled` | `false` | Global kill switch |
-| `production_ads_approved` | `false` | Required in addition to production mode |
+| `ad_mode` | `production` | `off`, `test`, `production` |
+| `ads_enabled` | `true` | Global kill switch |
+| `production_ads_approved` | `true` | Required in addition to production mode |
 | `interstitial_every_n_scans` | `2` | 2-50 successful single scans |
 | `interstitial_every_n_clicks` | `4` | 4-100 navigation tab changes, not arbitrary taps/ad clicks |
 | `interstitial_max_per_session` | `20` | 1-50 actual interstitial displays per process lifetime |
@@ -27,9 +26,9 @@ Do not activate production until this exact app/update is confirmed live and the
 | `open_ad_min_background_seconds` | `30` | 30-600 seconds away before app-open eligibility |
 | `reward_hours` | `24` | 1-168 hours of ad-free access after optional rewarded completion |
 
-Each format also has its own switch: `open_ad_enabled`, `banner_enabled`, `interstitial_enabled`, `native_enabled`, `rewarded_enabled`, `rewarded_interstitial_enabled`. All are false. The supplied five unit IDs are in config; no rewarded-interstitial unit was supplied, so that format must remain disabled. `admob_app_id` is documentation only: changing the manifest App ID requires a new signed APK.
+Each format also has its own switch: `open_ad_enabled`, `banner_enabled`, `interstitial_enabled`, `native_enabled`, `rewarded_enabled`, `rewarded_interstitial_enabled`. The first five are true in revision 2; rewarded-interstitial stays false with an empty unit ID. `admob_app_id` is documentation only: changing the manifest App ID requires a new signed APK.
 
-## Behavior after a future authorized activation
+## Active configuration behavior
 
 Either the scan threshold OR the navigation threshold makes an interstitial eligible. A scan ad is attempted when leaving the result, never over the camera or while reading a result. Opening old History results does not count as a scan. Batch mode does not interrupt a batch or count batch entries toward this counter. Navigation counts only a change to a different main tab. A displayed interstitial resets both counters; a skipped/unavailable ad does not. Both counters are cleared when ad eligibility is lost. The session cap resets on process restart.
 
